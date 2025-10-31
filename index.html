@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joshua Benavides | Desarrollador de Software</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="img/favicon.svg">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="navbar navbar-expand-lg fixed-top blur-nav">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center text-naranja" href="#main-content">
+          <img src="img/logo.svg" alt="Logo JBG" class="navbar-logo me-2">
+          <span class="fw-bold fs-4">J. Benavides</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+            <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" id="main-content">
+    <div>
+      <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">¡Hola! Soy Joshua Benavides</h1>
+      <h2 class="typed-text fs-3 text-azul mb-4"></h2>
+      <a href="CVA/CVA_JoshuaBenavidesGuzmán.pdf" download class="btn btn-lg btn-hero">Descargar CV</a>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi" class="container py-5" data-aos="fade-up">
+    <h2 class="text-center text-azul mb-4">Sobre mí</h2>
+    <p class="text-center fs-5 mx-auto" style="max-width: 850px;">
+      Soy un <strong>Desarrollador Full-Stack</strong> apasionado por crear soluciones seguras, escalables y elegantes. 
+      Experto en <strong>Java, JavaScript, SQL</strong> y entornos de infraestructura. Busco construir software con impacto real.
+    </p>
+    <div class="row g-4 mt-5">
+      <div class="col-md-4" data-aos="fade-right">
+        <div class="card-mvv glass-card p-4 h-100 text-center">
+          <i class="bi bi-rocket-takeoff-fill fs-1 text-naranja mb-3"></i>
+          <h3>Misión</h3>
+          <p>Desarrollar sistemas confiables y escalables que impulsen el crecimiento tecnológico.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="zoom-in">
+        <div class="card-mvv glass-card p-4 h-100 text-center">
+          <i class="bi bi-lightbulb-fill fs-1 text-naranja mb-3"></i>
+          <h3>Visión</h3>
+          <p>Convertirme en un líder técnico innovador que inspire excelencia en el desarrollo de software.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-left">
+        <div class="card-mvv glass-card p-4 h-100 text-center">
+          <i class="bi bi-stars fs-1 text-naranja mb-3"></i>
+          <h3>Valores</h3>
+          <p>Integridad, precisión, aprendizaje continuo y compromiso con la calidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="py-5 bg-gris text-white">
+    <div class="container" data-aos="fade-up">
+      <h2 class="text-center text-azul mb-5">Proyectos</h2>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-right">
+          <div class="project-card">
+            <img src="img/image.png" class="project-img" alt="Proyecto 1">
+            <div class="overlay">
+              <h4>Agencia de Viajes</h4>
+              <p>HTML5, CSS3 y diseño responsivo.</p>
+              <a href="#" class="btn btn-outline-light btn-sm mt-2">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="project-card">
+            <img src="/img/image.png" class="project-img" alt="Proyecto 2">
+            <div class="overlay">
+              <h4>GYM Web App</h4>
+              <p>Interfaz moderna con Bootstrap.</p>
+              <a href="#" class="btn btn-outline-light btn-sm mt-2">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-left">
+          <div class="project-card">
+            <img src="/img/image.png" class="project-img" alt="Proyecto 3">
+            <div class="overlay">
+              <h4>CRUD Hotelería</h4>
+              <p>Aplicación full-stack con lógica CRUD.</p>
+              <a href="#" class="btn btn-outline-light btn-sm mt-2">Ver más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="container py-5 text-center" data-aos="zoom-in">
+    <h2 class="text-azul mb-4">Contacto</h2>
+    <p>Email: <a href="mailto:joshuabenagu@gmail.com" class="text-naranja">joshuabenagu@gmail.com</a></p>
+    <p><i class="bi bi-github"></i> <a href="https://github.com/J-benavides" target="_blank" class="text-naranja">GitHub</a></p>
+    <p><i class="bi bi-linkedin"></i> <a href="https://www.linkedin.com/in/joshua-francisco-benavides-guzman-6a345a388" target="_blank" class="text-naranja">LinkedIn</a></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-glass py-3 text-center">
+    <p>© 2025 Joshua Benavides | <span class="text-naranja">Software que siempre escala.</span></p>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
