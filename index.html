@@ -1,147 +1,241 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joshua Benavides | Desarrollador de Software</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Benavides | Desarrollador de Software</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  <!-- AOS (Animate On Scroll) -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-  <!-- Iconos -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Tu CSS -->
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" type="image/png" href="img/favicon.svg">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="img/favicon.svg">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <nav class="navbar navbar-expand-lg fixed-top blur-nav">
-      <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center text-naranja" href="#main-content">
-          <img src="img/logo.svg" alt="Logo JBG" class="navbar-logo me-2">
-          <span class="fw-bold fs-4">J. Benavides</span>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top blur-nav py-3">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center text-naranja" href="#main-content">
+                    <img src="img/logo.svg" alt="Logo JBG" class="navbar-logo me-2">
+                    <span class="fw-bold fs-4">J. Benavides</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav gap-3">
+                        <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" id="main-content">
+        <div>
+            <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">¡Hola! Soy Joshua Benavides</h1>
+            <h2 class="typed-text fs-3 text-azul mb-4 animate__animated animate__fadeInUp animate__delay-1s"></h2>
+            <div class="mt-5 animate__animated animate__zoomIn animate__delay-2s d-flex justify-content-center flex-wrap gap-3">
+                
+                <a href="CVA/Joshua Francisco Benavides Guzmán CVA.pdf" download="CV_Joshua_Benavides.pdf" class="btn btn-lg btn-hero">
+                    Descargar CV <i class="bi bi-file-earmark-person-fill ms-2"></i>
+                </a>
+
+                <div class="dropdown">
+                    <button class="btn btn-lg btn-hero-outline dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Más CVs <i class="bi bi-caret-down-fill ms-2"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__fadeIn animate__faster" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="CVA/CV DISEÑO WEB.pdf" download="CV_Diseno_Web_Joshua.pdf">
+                            <i class="bi bi-file-earmark-image-fill me-2"></i> CV Diseño Web
+                        </a></li>
+                        <li><a class="dropdown-item" href="CVA/Joshua Francisco Benavides Guzmán CVA INGLES.pdf" download="CV_Joshua_Benavides_EN.pdf">
+                            <i class="bi bi-file-earmark-text-fill me-2"></i> CV en Inglés
+                        </a></li>
+                    </ul>
+                </div>
+
+                <a href="#proyectos" class="btn btn-lg btn-hero-outline">Ver Proyectos <i class="bi bi-arrow-right-circle ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+<section id="sobre-mi" class="container py-5" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="text-center text-azul mb-5">Sobre mí</h2>
+        <p class="text-center fs-5 mx-auto mb-5" style="max-width: 850px;">
+            Soy un <strong>Desarrollador Full-Stack</strong> apasionado por crear soluciones seguras, escalables y elegantes. 
+            Experto en <strong>Java, JavaScript, SQL</strong> y entornos de infraestructura. Busco construir software con impacto real.
+        </p>
+
+        <div class="row g-4 mt-5">
+            <div class="col-md-4" data-aos="fade-right" data-aos-duration="1200">
+                <div class="card-mvv glass-card p-4 h-100 text-center">
+                    <i class="bi bi-rocket-takeoff-fill fs-1 text-naranja mb-3"></i>
+                    <h3>Misión</h3>
+                    <p>Desarrollar sistemas confiables y escalables que impulsen el crecimiento tecnológico.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="card-mvv glass-card p-4 h-100 text-center">
+                    <i class="bi bi-lightbulb-fill fs-1 text-naranja mb-3"></i>
+                    <h3>Visión</h3>
+                    <p>Convertirme en un líder técnico innovador que inspire excelencia en el desarrollo de software.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-left" data-aos-duration="1200">
+                <div class="card-mvv glass-card p-4 h-100 text-center">
+                    <i class="bi bi-stars fs-1 text-naranja mb-3"></i>
+                    <h3>Valores</h3>
+                    <p>Integridad, precisión, aprendizaje continuo y compromiso con la calidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="habilidades" class="py-5 bg-oscuro text-white" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container">
+            <h2 class="text-center text-naranja mb-5">Mis Habilidades</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-card p-4 h-100 text-center">
+                        <i class="bi bi-code-slash fs-1 text-azul mb-3"></i>
+                        <h3 class="text-white">Frontend</h3>
+                        <p class="text-gris-claro">HTML5, CSS3 (Sass, Bootstrap, Tailwind), JavaScript (React, Vue.js)</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-card p-4 h-100 text-center">
+                        <i class="bi bi-server fs-1 text-azul mb-3"></i>
+                        <h3 class="text-white">Backend</h3>
+                        <p class="text-gris-claro">Java (Spring Boot), Node.js (Express), Python (Django, Flask), RESTful APIs</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-card p-4 h-100 text-center">
+                        <i class="bi bi-database-fill fs-1 text-azul mb-3"></i>
+                        <h3 class="text-white">Bases de Datos</h3>
+                        <p class="text-gris-claro">SQL (MySQL, PostgreSQL), NoSQL (MongoDB)</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-card p-4 h-100 text-center">
+                        <i class="bi bi-tools fs-1 text-azul mb-3"></i>
+                        <h3 class="text-white">Herramientas & DevOps</h3>
+                        <p class="text-gris-claro">Git, Docker, Jenkins, AWS, Azure, CI/CD</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="skill-card p-4 h-100 text-center">
+                        <i class="bi bi-palette-fill fs-1 text-azul mb-3"></i>
+                        <h3 class="text-white">UI/UX & Diseño</h3>
+                        <p class="text-gris-claro">Figma, Prototipado, Responsive Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="proyectos" class="py-5 bg-claro text-dark-mode" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container">
+            <h2 class="text-center text-azul mb-5">Mis Proyectos</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="project-card">
+                        <img src="img/image.png" class="project-img" alt="Proyecto Agencia de Viajes">
+                        <div class="overlay">
+                            <h4>Agencia de Viajes</h4>
+                            <p>HTML5, CSS3 y diseño responsivo.</p>
+                            <a href="#" target="_blank" class="btn btn-outline-light btn-sm mt-2 me-2"><i class="bi bi-eye-fill me-1"></i> Ver Web</a>
+                            <a href="#" target="_blank" class="btn btn-outline-light btn-sm mt-2"><i class="bi bi-github me-1"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="1200">
+                    <div class="project-card">
+                        <img src="img/image.png" class="project-img" alt="Proyecto GYM Web App">
+                        <div class="overlay">
+                            <h4>GYM Web App</h4>
+                            <p>Interfaz moderna con Bootstrap.</p>
+                            <a href="#" target="_blank" class="btn btn-outline-light btn-sm mt-2 me-2"><i class="bi bi-eye-fill me-1"></i> Ver Web</a>
+                            <a href="#" target="_blank" class="btn btn-outline-light btn-sm mt-2"><i class="bi bi-github me-1"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="project-card">
+                        <img src="img/image.png" class="project-img" alt="Proyecto CRUD Hotelería">
+                        <div class="overlay">
+                            <h4>CRUD Hotelería</h4>
+                            <p>Aplicación full-stack con lógica CRUD.</p>
+                            <a href="#" target="_blank" class="btn btn-outline-light btn-sm mt-2 me-2"><i class="bi bi-eye-fill me-1"></i> Ver Web</a>
+                            <a href="#" target="_blank" class="btn btn-outline-light btn-sm mt-2"><i class="bi bi-github me-1"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="call-to-action py-5 text-white text-center position-relative overflow-hidden" data-aos="zoom-in" data-aos-duration="1200">
+    <div class="container position-relative z-1">
+        <h2 class="text-naranja mb-4 animate__animated animate__fadeInUp">¿Listo para transformar tus ideas en realidad?</h2>
+        <p class="fs-4 mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+            Si buscas un desarrollador que combine creatividad, precisión y escalabilidad, ¡has llegado al lugar correcto!
+        </p>
+        
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_pztzjb8f.json" 
+                       background="transparent" 
+                       speed="1" 
+                       style="width: 180px; height: 180px; margin: 0 auto 40px auto;" 
+                       loop 
+                       autoplay
+                       class="animate__animated animate__zoomIn animate__delay-2s">
+        </lottie-player>
+
+        <a href="#contacto" class="btn btn-lg btn-hero animate__animated animate__fadeInUp animate__delay-3s">
+            ¡Hablemos de tu próximo gran proyecto! <i class="bi bi-chat-dots ms-2"></i>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav gap-3">
-            <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
-            <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" id="main-content">
-    <div>
-      <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">¡Hola! Soy Joshua Benavides</h1>
-      <h2 class="typed-text fs-3 text-azul mb-4"></h2>
-      <a href="CVA/CVA_JoshuaBenavidesGuzmán.pdf" download class="btn btn-lg btn-hero">Descargar CV</a>
     </div>
-  </section>
-
-  <!-- SOBRE MÍ -->
-  <section id="sobre-mi" class="container py-5" data-aos="fade-up">
-    <h2 class="text-center text-azul mb-4">Sobre mí</h2>
-    <p class="text-center fs-5 mx-auto" style="max-width: 850px;">
-      Soy un <strong>Desarrollador Full-Stack</strong> apasionado por crear soluciones seguras, escalables y elegantes. 
-      Experto en <strong>Java, JavaScript, SQL</strong> y entornos de infraestructura. Busco construir software con impacto real.
-    </p>
-    <div class="row g-4 mt-5">
-      <div class="col-md-4" data-aos="fade-right">
-        <div class="card-mvv glass-card p-4 h-100 text-center">
-          <i class="bi bi-rocket-takeoff-fill fs-1 text-naranja mb-3"></i>
-          <h3>Misión</h3>
-          <p>Desarrollar sistemas confiables y escalables que impulsen el crecimiento tecnológico.</p>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="card-mvv glass-card p-4 h-100 text-center">
-          <i class="bi bi-lightbulb-fill fs-1 text-naranja mb-3"></i>
-          <h3>Visión</h3>
-          <p>Convertirme en un líder técnico innovador que inspire excelencia en el desarrollo de software.</p>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-left">
-        <div class="card-mvv glass-card p-4 h-100 text-center">
-          <i class="bi bi-stars fs-1 text-naranja mb-3"></i>
-          <h3>Valores</h3>
-          <p>Integridad, precisión, aprendizaje continuo y compromiso con la calidad.</p>
-        </div>
-      </div>
+    <div class="background-elements">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="pulse-circle pulse-circle-1"></div>
+        <div class="pulse-circle pulse-circle-2"></div>
     </div>
-  </section>
+</section>
 
-  <!-- PROYECTOS -->
-  <section id="proyectos" class="py-5 bg-gris text-white">
-    <div class="container" data-aos="fade-up">
-      <h2 class="text-center text-azul mb-5">Proyectos</h2>
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="fade-right">
-          <div class="project-card">
-            <img src="img/image.png" class="project-img" alt="Proyecto 1">
-            <div class="overlay">
-              <h4>Agencia de Viajes</h4>
-              <p>HTML5, CSS3 y diseño responsivo.</p>
-              <a href="#" class="btn btn-outline-light btn-sm mt-2">Ver más</a>
-            </div>
-          </div>
+
+    <section id="contacto" class="container py-5 text-center text-dark-mode" data-aos="zoom-in" data-aos-duration="1000">
+        <h2 class="text-azul mb-4">¡Conectemos!</h2>
+        <div class="contact-info fs-5">
+            <p><i class="bi bi-envelope-fill me-2 text-naranja"></i> Email: <a href="mailto:joshuabenagu@gmail.com" class="text-naranja">joshuabenagu@gmail.com</a></p>
+            <p><i class="bi bi-github me-2 text-naranja"></i> GitHub: <a href="https://github.com/J-benavides" target="_blank" class="text-naranja">Mi Repositorio</a></p>
+            <p><i class="bi bi-linkedin me-2 text-naranja"></i> LinkedIn: <a href="https://www.linkedin.com/in/joshua-francisco-benavides-guzman-6a345a388" target="_blank" class="text-naranja">Mi Perfil</a></p>
+            <p><i class="bi bi-code-slash me-2 text-naranja"></i> Repositorio del Portafolio: <a href="https://github.com/J-benavides/mi-portafolio" target="_blank" class="text-naranja">Ver en GitHub</a></p>
         </div>
-        <div class="col-md-4" data-aos="zoom-in">
-          <div class="project-card">
-            <img src="/img/image.png" class="project-img" alt="Proyecto 2">
-            <div class="overlay">
-              <h4>GYM Web App</h4>
-              <p>Interfaz moderna con Bootstrap.</p>
-              <a href="#" class="btn btn-outline-light btn-sm mt-2">Ver más</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-left">
-          <div class="project-card">
-            <img src="/img/image.png" class="project-img" alt="Proyecto 3">
-            <div class="overlay">
-              <h4>CRUD Hotelería</h4>
-              <p>Aplicación full-stack con lógica CRUD.</p>
-              <a href="#" class="btn btn-outline-light btn-sm mt-2">Ver más</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="container py-5 text-center" data-aos="zoom-in">
-    <h2 class="text-azul mb-4">Contacto</h2>
-    <p>Email: <a href="mailto:joshuabenagu@gmail.com" class="text-naranja">joshuabenagu@gmail.com</a></p>
-    <p><i class="bi bi-github"></i> <a href="https://github.com/J-benavides" target="_blank" class="text-naranja">GitHub</a></p>
-    <p><i class="bi bi-linkedin"></i> <a href="https://www.linkedin.com/in/joshua-francisco-benavides-guzman-6a345a388" target="_blank" class="text-naranja">LinkedIn</a></p>
-  </section>
+    <footer class="footer-glass py-4 text-center text-white">
+        <p class="mb-0">© 2025 Joshua Benavides | <span class="text-naranja">Innovacion & Codigo Creativo.</span></p>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer class="footer-glass py-3 text-center">
-    <p>© 2025 Joshua Benavides | <span class="text-naranja">Software que siempre escala.</span></p>
-  </footer>
-
-  <!-- JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

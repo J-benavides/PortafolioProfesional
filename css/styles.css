@@ -1,159 +1,599 @@
+/*==========================================================
+  PALETA DE COLORES Y FUENTES
+============================================================*/
+
 :root {
-  --gris: #323E4A;       /* 60% */
-  --naranja: #E97B2C;    /* 30% */
-  --azul: #4884B4;       /* 10% */
-  --blanco: #ffffff;
-  --gris-claro: #B4B4B4;
+    --oscuro: #1E293B; /* Fondo principal oscuro, sustituye al gris anterior */
+    --gris-oscuro: #323E4A; /* Un gris más para contrastes y fondos de tarjetas */
+    --naranja: #E97B2C;      /* Énfasis principal */
+    --azul: #4884B4;        /* Acento secundario */
+    --blanco: #F8FAFC;      /* Texto principal en oscuro */
+    --gris-claro: #CBD5E1;   /* Texto secundario en oscuro */
+    
+    /* Nuevas variables para efectos */
+    --bg-transparente-oscuro: rgba(30, 41, 59, 0.8); /* Para navbar y footer blur */
+    --bg-glass-card-dark: rgba(50, 62, 74, 0.5); /* Fondo para glass cards en secciones oscuras */
+    --star-color: rgba(255, 255, 255, 0.6); /* Color para las estrellas de animación */
+    --pulse-color: rgba(72, 132, 180, 0.3); /* Color azul de acento con transparencia para el pulso */
 }
 
-/* GENERAL */
+/* Importar Fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap');
+
+/*==========================================================
+  ESTILOS GENERALES Y RESET
+============================================================*/
+
 body {
-  background: linear-gradient(135deg, var(--gris) 40%, #1e1e2f);
-  color: var(--blanco);
-  font-family: 'Open Sans', sans-serif;
-  overflow-x: hidden;
+    margin: 0;
+    /* Fondo con degradado para un look más moderno */
+    background: linear-gradient(135deg, var(--oscuro) 0%, #171d2b 100%); 
+    color: var(--blanco); /* Color de texto base para fondos oscuros */
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    padding-top: 78px; /* Espacio para la navbar fija */
+    overflow-x: hidden; /* Previene el scroll horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
 }
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--oscuro);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--naranja);
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--azul);
+}
+
+/* Animación sutil para todos los enlaces al hacer hover */
+a {
+    color: inherit; /* Mantener el color original del texto */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+a:hover {
+    color: var(--naranja) !important; /* Resaltar enlaces */
+    transform: translateY(-2px); /* Pequeño levante */
+}
+
+
+/*==========================================================
+  CLASES DE UTILIDAD
+============================================================*/
 
 .text-naranja { color: var(--naranja) !important; }
 .text-azul { color: var(--azul) !important; }
-.bg-gris { background-color: var(--gris) !important; }
+.bg-oscuro { background-color: var(--oscuro) !important; } 
+/* Las clases bg-claro, text-dark-mode, etc. se eliminaron ya que el fondo ahora es globalmente oscuro */
 
-h2 {
-  font-family: 'Montserrat', sans-serif;
-  position: relative;
-}
 
-h2::after {
-  content: "";
-  position: absolute;
-  width: 70px;
-  height: 4px;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--naranja);
-  border-radius: 2px;
-}
+/*==========================================================
+  1. NAVEGACIÓN (NAVBAR)
+============================================================*/
 
-/* --- NAVBAR --- */
 .blur-nav {
-  background: rgba(50, 62, 74, 0.8);
-  backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
-}
-
-.blur-nav.scrolled {
-  background: rgba(35, 35, 35, 0.95);
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+    background: var(--bg-transparente-oscuro);
+    backdrop-filter: blur(10px); /* Efecto Glassmorphism */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .navbar-logo {
-  width: 40px;
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+    width: 38px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 .navbar-logo:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
-/* Links */
+.navbar-brand:hover {
+    color: var(--azul) !important; /* Cambia el color del texto */
+}
+
+.navbar-toggler {
+    border-color: var(--naranja) !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 123, 44, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
 .nav-link {
-  color: var(--blanco) !important;
-  position: relative;
-  font-weight: 500;
+    color: var(--blanco) !important;
+    position: relative;
+    font-weight: 600; /* Un poco más de peso para los enlaces */
+    padding: 8px 0; /* Ajustar padding para el efecto underline */
 }
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--azul);
-  transition: 0.3s;
+    content: '';
+    position: absolute;
+    bottom: 0; /* Línea abajo del texto */
+    left: 50%; /* Centrar la línea */
+    transform: translateX(-50%);
+    width: 0%;
+    height: 3px; /* Grosor de la línea */
+    background: var(--azul);
+    border-radius: 2px;
+    transition: width 0.3s ease-out;
 }
 .nav-link:hover::after {
-  width: 100%;
+    width: 80%; /* Ancho de la línea al hacer hover */
+}
+/* Activar el underline para el enlace activo (si Bootstrap lo añade) */
+.nav-link.active::after {
+    width: 80%;
 }
 
-/* --- HERO --- */
+/* Estilos para el Dropdown de CVs */
+.dropdown-menu {
+    background-color: var(--gris-oscuro) !important; /* Fondo del dropdown */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.dropdown-item {
+    color: var(--blanco) !important; /* Texto de los items */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: var(--azul) !important; /* Fondo al pasar el ratón */
+    color: var(--blanco) !important;
+}
+
+
+/*==========================================================
+  2. SECCIÓN HERO
+============================================================*/
+
 .hero {
-  background: url('../img/header.svg') center/cover fixed;
-  height: 100vh;
-  position: relative;
+    background: url('../img/header.svg') center center/cover no-repeat fixed;
+    min-height: 100vh;
+    position: relative;
+    display: flex; /* Asegura el centrado vertical */
+    align-items: center;
+    justify-content: center;
+    padding-top: 78px; /* Compensar la altura de la navbar */
 }
 .hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); /* Oscurecer la imagen de fondo */
+    z-index: 1;
 }
 .hero > div {
-  position: relative;
-  z-index: 2;
+    position: relative;
+    z-index: 2;
+    padding: 20px; /* Para que no se pegue en móviles */
+}
+
+/* Estilos para el texto de Typed.js */
+.typed-text {
+    min-height: 40px; /* Para evitar saltos de layout */
+    font-weight: 600;
+}
+
+/* Sombra más bonita para el texto del Hero */
+.hero h1, .hero h2 {
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .btn-hero {
-  background: linear-gradient(45deg, var(--azul), var(--naranja));
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  padding: 12px 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(90deg, var(--azul) 0%, var(--naranja) 100%);
+    color: var(--blanco);
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 .btn-hero:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px var(--naranja);
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px var(--naranja); /* Sombra más pronunciada al hacer hover */
+    filter: brightness(1.1);
 }
 
-/* --- CARDS --- */
-.glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+.btn-hero-outline {
+    background: transparent;
+    color: var(--blanco);
+    border: 2px solid var(--azul);
+    border-radius: 30px;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-.glass-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+.btn-hero-outline:hover {
+    background: var(--azul);
+    border-color: var(--azul);
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--azul);
 }
 
-/* --- PROYECTOS --- */
+/*==========================================================
+  3. TÍTULOS DE SECCIÓN (H2)
+============================================================*/
+
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px; /* Espacio para el underline */
+    color: var(--blanco); /* Asegura que todos los H2 en secciones oscuras sean blancos */
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 80px; /* Ancho de la línea de énfasis */
+    height: 4px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--naranja);
+    border-radius: 2px;
+}
+
+
+/*==========================================================
+  4. SECCIÓN SOBRE MÍ (AHORA FONDO OSCURO)
+============================================================*/
+
+#sobre-mi {
+    background-color: transparent; /* Permite que el background del body se vea */
+    color: var(--blanco); /* Texto principal blanco por defecto del body */
+}
+
+/* Párrafos del Perfil Profesional */
+#sobre-mi > p { /* Selector directo para el párrafo principal */
+    color: var(--gris-claro); /* Usa un gris claro para mayor legibilidad sobre el oscuro */
+    font-weight: 400; /* Volvemos al peso normal */
+}
+
+/* Estilo Glassmorphism para las tarjetas MVV */
+.card-mvv {
+    background: var(--bg-glass-card-dark); /* Fondo semi-transparente más oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra más fuerte y extendida */
+    transition: all 0.4s ease;
+}
+.card-mvv:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 20px var(--naranja); /* Sombra intensa con halo naranja */
+    border-color: var(--naranja); 
+}
+.card-mvv h3 {
+    color: var(--blanco) !important; /* Títulos de M/V/V en blanco */
+    border-bottom: 2px solid var(--azul); 
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.card-mvv p {
+    color: var(--gris-claro); /* Párrafos dentro de las MVV en gris claro */
+    font-weight: 400;
+}
+
+
+/*==========================================================
+  5. SECCIÓN HABILIDADES (FONDO OSCURO)
+============================================================*/
+#habilidades {
+    background-color: var(--oscuro);
+    color: var(--blanco);
+}
+
+.skill-card {
+    background: var(--gris-oscuro); /* Fondo sólido para las tarjetas de habilidad */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    transition: all 0.3s ease;
+    border: 1px solid var(--gris-oscuro);
+}
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px var(--azul), 0 0 15px rgba(72, 132, 180, 0.5); /* Sombra azul con halo */
+    border-color: var(--azul);
+}
+.skill-card h3 {
+    color: var(--blanco) !important;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.skill-card p {
+    color: var(--gris-claro);
+    font-size: 0.95rem;
+}
+
+
+/*==========================================================
+  6. SECCIÓN PROYECTOS (FONDO OSCURO)
+============================================================*/
+
+#proyectos {
+    background-color: var(--oscuro); /* Asegura el fondo oscuro */
+    color: var(--blanco); /* Asegura el texto blanco */
+}
+
 .project-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--naranja), 0 0 10px rgba(0, 0, 0, 0.6); 
+    border-color: var(--naranja);
 }
 .project-img {
-  width: 100%;
-  transition: transform 0.4s ease;
+    width: 100%;
+    height: 200px; /* Altura fija para las imágenes de proyecto */
+    object-fit: cover; /* Ajusta la imagen para cubrir el espacio */
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 .project-card:hover .project-img {
-  transform: scale(1.1);
-}
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: 0.4s;
-}
-.project-card:hover .overlay {
-  opacity: 1;
+    transform: scale(1.1);
+    filter: brightness(0.7); /* Oscurece la imagen para que el overlay destaque más */
 }
 
-/* --- FOOTER --- */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para el overlay */
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px; /* Asegura el border-radius del overlay */
+}
+.project-card:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h4 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--naranja); /* Título del proyecto en naranja */
+}
+.overlay p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--gris-claro);
+}
+
+/* Mejora de los botones dentro del overlay de proyectos */
+.project-card .btn-outline-light {
+    border-color: var(--blanco);
+    color: var(--blanco);
+    background-color: transparent;
+    padding: 8px 20px; /* Ajustar padding */
+    border-radius: 20px; /* Más redondeado */
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.project-card .btn-outline-light:hover {
+    background-color: var(--naranja);
+    border-color: var(--naranja);
+    color: var(--blanco);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(233, 123, 44, 0.5);
+}
+
+
+/*==========================================================
+  7. SECCIÓN LLAMADA A LA ACCIÓN MEJORADA (Call to Action)
+============================================================*/
+.call-to-action {
+    background: linear-gradient(135deg, var(--gris-oscuro) 0%, var(--oscuro) 100%);
+    position: relative;
+    overflow: hidden; /* Para contener los elementos de fondo */
+    padding: 80px 0; /* Más espacio vertical */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.call-to-action h2 {
+    font-size: 3.2rem; /* Título más grande */
+    margin-bottom: 1.5rem;
+    color: var(--naranja) !important; /* Asegura el color naranja */
+}
+.call-to-action h2::after {
+    background: var(--azul); /* Cambiamos el color de la línea bajo el h2 */
+}
+
+.call-to-action p {
+    color: var(--gris-claro);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Fondo con estrellas y círculos pulsantes */
+.background-elements {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none; /* No interactúan con el ratón */
+}
+
+.star {
+    position: absolute;
+    background-color: var(--star-color);
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 4s infinite ease-in-out;
+}
+.star-1 { width: 4px; height: 4px; top: 10%; left: 20%; animation-delay: 0s; }
+.star-2 { width: 3px; height: 3px; top: 30%; right: 15%; animation-delay: 1.5s; }
+.star-3 { width: 5px; height: 5px; bottom: 20%; left: 40%; animation-delay: 3s; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+.pulse-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--pulse-color);
+    opacity: 0;
+    animation: pulse 6s infinite ease-out;
+}
+.pulse-circle-1 { width: 150px; height: 150px; top: 5%; left: 5%; animation-delay: 0s; }
+.pulse-circle-2 { width: 200px; height: 200px; bottom: 10%; right: 10%; animation-delay: 3s; }
+
+@keyframes pulse {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Ajuste para el Lottie player */
+.call-to-action lottie-player {
+    animation-duration: 2s; /* Acelera un poco la entrada de Lottie */
+}
+
+
+/*==========================================================
+  8. SECCIÓN CONTACTO
+============================================================*/
+
+#contacto {
+    background-color: transparent; /* Permite que el fondo del body se vea */
+    color: var(--blanco); /* Asegura que el texto sea blanco */
+}
+
+#contacto p {
+    color: var(--gris-claro); /* Asegura el gris claro para los párrafos de contacto */
+}
+#contacto a {
+    font-weight: 600; /* Negrita para los enlaces de contacto */
+}
+
+
+/*==========================================================
+  9. FOOTER
+============================================================*/
+
 .footer-glass {
-  background: rgba(50, 62, 74, 0.8);
-  backdrop-filter: blur(8px);
-  border-top: 2px solid var(--naranja);
+    background: var(--bg-transparente-oscuro);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3); /* Sombra superior para el footer */
+    color: var(--blanco);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-glass p {
+    margin-bottom: 0;
+    color: var(--gris-claro);
+}
+
+
+/*==========================================================
+  RESPONSIVENESS
+============================================================*/
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--bg-transparente-oscuro);
+        backdrop-filter: blur(10px);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .navbar-nav {
+        align-items: center;
+    }
+    .nav-link {
+        padding: 10px 0;
+    }
+    .nav-link::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+        width: 70%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    h2 {
+        font-size: 2.2rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero h2.typed-text {
+        font-size: 1.5rem;
+    }
+    .call-to-action h2 {
+        font-size: 2.5rem;
+    }
+    .call-to-action p {
+        font-size: 1.1rem;
+    }
+    .btn-hero, .btn-hero-outline {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    .lottie-player {
+        width: 120px !important;
+        height: 120px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero h2.typed-text {
+        font-size: 1.2rem;
+    }
+    .call-to-action h2 {
+        font-size: 2rem;
+    }
+    .call-to-action p {
+        font-size: 1rem;
+    }
+    .btn-hero, .btn-hero-outline {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .dropdown {
+        width: 100%;
+    }
+    .dropdown-menu {
+        width: 100%;
+    }
 }
