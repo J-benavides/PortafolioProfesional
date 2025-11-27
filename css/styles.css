@@ -3,18 +3,57 @@
 ============================================================*/
 
 :root {
-    --oscuro: #1E293B; /* Fondo principal oscuro, sustituye al gris anterior */
-    --gris-oscuro: #323E4A; /* Un gris más para contrastes y fondos de tarjetas */
-    --naranja: #E97B2C;      /* Énfasis principal */
-    --azul: #4884B4;        /* Acento secundario */
-    --blanco: #F8FAFC;      /* Texto principal en oscuro */
-    --gris-claro: #CBD5E1;   /* Texto secundario en oscuro */
-    
-    /* Nuevas variables para efectos */
-    --bg-transparente-oscuro: rgba(30, 41, 59, 0.8); /* Para navbar y footer blur */
-    --bg-glass-card-dark: rgba(50, 62, 74, 0.5); /* Fondo para glass cards en secciones oscuras */
-    --star-color: rgba(255, 255, 255, 0.6); /* Color para las estrellas de animación */
-    --pulse-color: rgba(72, 132, 180, 0.3); /* Color azul de acento con transparencia para el pulso */
+/* Modo Oscuro por Defecto */
+--oscuro: #1E293B; /* Fondo principal oscuro */
+--gris-oscuro: #323E4A; /* Un gris más para contrastes y fondos de tarjetas */
+-naranja: #E97B2C;/* Énfasis principal */
+--azul: #4884B4;/* Acento secundario */
+--blanco: #F8FAFC;/* Texto principal en oscuro */
+--gris-claro: #CBD5E1;/* Texto secundario en oscuro */
+
+/* Variables para efectos y fondos */
+--bg-transparente-oscuro: rgba(30, 41, 59, 0.8); /* Para navbar y footer blur */
+--bg-glass-card-dark: rgba(50, 62, 74, 0.5); /* Fondo para glass cards en secciones oscuras */
+--star-color: rgba(255, 255, 255, 0.6); /* Color para las estrellas de animación (si se usan) */
+--pulse-color: rgba(72, 132, 180, 0.3); /* Color azul de acento con transparencia para el pulso */
+
+/* NUEVAS VARIABLES PARA EL FONDO ANIMADO DEL HERO (MODO OSCURO) */
+--particle-color-1: rgba(72, 132, 180, 0.4); /* Partícula base: azul del tema con transparencia */
+--particle-color-2: rgba(233, 123, 44, 0.4); /* Partícula secundaria: naranja del tema con transparencia */
+--particle-color-active: #64FFDA; /* Color brillante para la interacción del ratón (Verde/Aqua brillante) */
+--mouse-glow-color: rgba(72, 132, 180, 0.15); /* Brillo del ratón: azul del tema con baja opacidad */
+/* Colores base para el degradado del Hero en MODO OSCURO */
+--hero-bg-base-current-theme: var(--oscuro); /* El color oscuro principal de tu tema */
+--hero-bg-secondary-current-theme: var(--azul); /* Un color secundario de tu tema para el degradado */
+
+
+/* Altura de la Navbar, ajustada para el logo más grande */
+--navbar-height: 100px; /* ¡Aumentado a 120px para un logo más grande y visible! */ 
+}
+
+/* Variables para Modo Claro */
+body.light-mode {
+--oscuro: #F8FAFC;/* Fondo principal claro */
+--gris-oscuro: #E2E8F0; /* Gris más claro para tarjetas */
+--naranja: #E97B2C;/* Mismo naranja de énfasis */
+--azul: #4884B4; /* Mismo azul de acento */
+--blanco: #1E293B; /* Texto principal oscuro */
+--gris-claro: #475569; /* Texto secundario más oscuro */
+
+--bg-transparente-oscuro: rgba(255, 255, 255, 0.8); /* Navbar/footer claro */
+--bg-glass-card-dark: rgba(255, 255, 255, 0.6); /* Fondo para glass cards en secciones claras */
+--star-color: rgba(0, 0, 0, 0.2); /* Estrellas más sutiles en claro */
+--pulse-color: rgba(72, 132, 180, 0.1); /* Pulso más sutil */
+
+/* NUEVAS VARIABLES PARA EL FONDO ANIMADO DEL HERO EN MODO CLARO */
+--particle-color-1: rgba(72, 132, 180, 0.2); /* Partícula base: azul con más transparencia para claro */
+--particle-color-2: rgba(233, 123, 44, 0.2); /* Partícula secundaria: naranja con más transparencia para claro */
+--particle-color-active: #E97B2C; /* Color brillante para la interacción (Naranja del tema) */
+--mouse-glow-color: rgba(233, 123, 44, 0.1); /* Brillo del ratón: naranja con baja opacidad */
+
+/* Colores base para el degradado del Hero en MODO CLARO */
+--hero-bg-base-current-theme: var(--oscuro); /* El color claro principal de tu tema */
+--hero-bg-secondary-current-theme: var(--naranja); /* Un color secundario de tu tema para el degradado */
 }
 
 /* Importar Fuentes de Google Fonts */
@@ -26,15 +65,24 @@
 
 body {
     margin: 0;
-    /* Fondo con degradado para un look más moderno */
-    background: linear-gradient(135deg, var(--oscuro) 0%, #171d2b 100%); 
+    /* Fondo con degradado que respeta la variable --oscuro */
+    /* Para CSS puro, el `darken` de preprocesadores no funciona. Usamos un color fijo oscuro o rgba. */
+    background-image: linear-gradient(135deg, var(--oscuro) 0%, #171d2b 100%); 
     color: var(--blanco); /* Color de texto base para fondos oscuros */
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
-    padding-top: 78px; /* Espacio para la navbar fija */
+    padding-top: var(--navbar-height); /* Espacio para la navbar fija, usando la variable */
     overflow-x: hidden; /* Previene el scroll horizontal */
     scroll-behavior: smooth; /* Desplazamiento suave */
+    /* Transición para background-image y color, ya que el background es un degradado */
+    transition: background-image 0.3s ease, color 0.3s ease; 
 }
+
+/* Ajuste para el degradado del body en modo claro */
+body.light-mode {
+    background-image: linear-gradient(135deg, var(--oscuro) 0%, #D1DBE6 100%); 
+}
+
 
 h1, h2, h3, .navbar-brand {
     font-family: 'Montserrat', sans-serif;
@@ -51,15 +99,16 @@ p {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--oscuro);
+    background-color: var(--oscuro); /* Usamos background-color */
+    transition: background-color 0.3s ease; /* Transición para el track del scrollbar */
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--naranja);
+    background-color: var(--naranja); /* Usamos background-color */
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease; 
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--azul);
+    background-color: var(--azul);
 }
 
 /* Animación sutil para todos los enlaces al hacer hover */
@@ -75,13 +124,138 @@ a:hover {
 
 
 /*==========================================================
+  ESTILOS DE BOTONES MODERNOS
+============================================================*/
+
+/* Estilos base para todos los botones del hero */
+.btn-hero,
+.btn-hero-outline {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out; /* Transiciones suaves para todos los cambios */
+    position: relative;
+    overflow: hidden; /* Para efectos de brillo o animaciones internas */
+    z-index: 1; /* Asegura que los botones estén sobre el resto del contenido del hero */
+}
+
+/* Estilos para el botón principal (Descargar CV) */
+.btn-hero {
+    background-color: var(--naranja);
+    color: var(--blanco);
+    border: 2px solid var(--naranja);
+    box-shadow: 0 4px 15px rgba(233, 123, 44, 0.4); /* Sombra sutil del color naranja */
+}
+
+.btn-hero:hover {
+    background-color: transparent; /* Fondo transparente al pasar el ratón */
+    color: var(--naranja); /* El texto se vuelve naranja */
+    border-color: var(--naranja);
+    transform: translateY(-3px); /* Pequeño levantamiento */
+    box-shadow: 0 8px 25px rgba(233, 123, 44, 0.6); /* Sombra más pronunciada */
+}
+
+/* Estilos para el botón secundario (Ver Proyectos, Más CVs) */
+.btn-hero-outline {
+    background-color: transparent;
+    color: var(--blanco);
+    border: 2px solid var(--azul); /* Borde azul */
+    box-shadow: 0 4px 15px rgba(72, 132, 180, 0.2); /* Sombra sutil del color azul */
+}
+
+body.light-mode .btn-hero-outline {
+    color: var(--blanco); /* En modo claro, el texto también será el color principal oscuro */
+    border: 2px solid var(--azul);
+    background-color: rgba(255, 255, 255, 0.4); /* Fondo ligeramente blanquecino en modo claro */
+    box-shadow: 0 4px 15px rgba(72, 132, 180, 0.1); /* Sombra más sutil */
+}
+
+.btn-hero-outline:hover {
+    background-color: var(--azul); /* Fondo azul al pasar el ratón */
+    color: var(--blanco); /* El texto se vuelve blanco */
+    border-color: var(--azul);
+    transform: translateY(-3px); /* Pequeño levantamiento */
+    box-shadow: 0 8px 25px rgba(72, 132, 180, 0.4); /* Sombra más pronunciada */
+}
+
+body.light-mode .btn-hero-outline:hover {
+    background-color: var(--azul); 
+    color: var(--blanco);
+    border-color: var(--azul);
+    box-shadow: 0 8px 25px rgba(72, 132, 180, 0.3);
+}
+
+/* Estilos específicos para el Dropdown Toggle para asegurar la consistencia */
+.dropdown-toggle.btn-hero-outline {
+    display: flex; /* Asegura que el icono y texto estén centrados */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos del Dropdown Menu (para que se integre con el tema) */
+.dropdown-menu {
+    background-color: var(--bg-glass-card-dark); /* Usa tu variable para el fondo de tarjeta (glassmorphism) */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(8px); /* Efecto blur para glassmorphism */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    padding: 10px 0;
+}
+
+body.light-mode .dropdown-menu {
+    background-color: var(--bg-glass-card-dark); /* Usará el valor del light-mode */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+    color: var(--blanco); /* Texto del dropdown */
+    padding: 10px 20px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.light-mode .dropdown-item {
+    color: var(--blanco); /* Texto oscuro en modo claro */
+}
+
+.dropdown-item:hover {
+    background-color: var(--azul); /* Resaltado azul al pasar el ratón */
+    color: var(--blanco);
+}
+
+/* Ajustes para iconos dentro de los botones */
+.btn-hero i, .btn-hero-outline i {
+    margin-left: 8px;
+}
+
+/* Media Queries para responsividad de los botones */
+@media (max-width: 768px) {
+    .btn-hero,
+    .btn-hero-outline {
+        padding: 10px 20px;
+        font-size: 1rem;
+        width: 100%; /* Ocupar todo el ancho en móviles */
+        max-width: 250px; /* Limitar ancho para que no sean enormes */
+    }
+    .d-flex.flex-wrap.gap-3 {
+        justify-content: center; /* Centrar los botones cuando se apilan */
+    }
+    .btn-hero-outline.mt-4 { /* Asegurar margen superior en el botón de Ver Proyectos */
+        margin-top: 15px !important;
+    }
+}
+
+/*==========================================================
   CLASES DE UTILIDAD
 ============================================================*/
 
 .text-naranja { color: var(--naranja) !important; }
 .text-azul { color: var(--azul) !important; }
 .bg-oscuro { background-color: var(--oscuro) !important; } 
-/* Las clases bg-claro, text-dark-mode, etc. se eliminaron ya que el fondo ahora es globalmente oscuro */
 
 
 /*==========================================================
@@ -89,142 +263,275 @@ a:hover {
 ============================================================*/
 
 .blur-nav {
-    background: var(--bg-transparente-oscuro);
-    backdrop-filter: blur(10px); /* Efecto Glassmorphism */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    background-color: var(--bg-transparente-oscuro); /* Usamos background-color */
+    backdrop-filter: blur(15px); /* Más blur para un efecto más distintivo */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Sombra más fuerte y elevada */
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, height 0.4s ease; 
+    height: var(--navbar-height); /* Altura fija para la navbar */
+    display: flex; 
+    align-items: center; /* Centrar verticalmente todos los elementos de la navbar */
 }
 
+/* Efecto de scroll para la navbar */
+.blur-nav.scrolled {
+    background-color: rgba(30, 41, 59, 0.98); /* Casi opaco al hacer scroll en modo oscuro */
+    backdrop-filter: blur(20px); /* Más blur al hacer scroll */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+body.light-mode .blur-nav.scrolled {
+    background-color: rgba(255, 255, 255, 0.98); /* Casi opaco al hacer scroll en modo claro */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+.navbar-brand {
+    transition: none; 
+}
+.navbar-brand:hover { 
+    color: inherit !important; 
+}
+
+
+/* Estilo para el logo de la navbar (NUEVAMENTE REVISADO Y MÁS GRANDE) */
 .navbar-logo {
-    width: 38px;
+    width: 110px; /* ¡Aún más grande! Ajustado para 120px de altura de nav */
     height: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4); /* Sombra inicial sutil, siguiendo la forma del logo */
 }
 .navbar-logo:hover {
-    transform: scale(1.1);
-}
-
-.navbar-brand:hover {
-    color: var(--azul) !important; /* Cambia el color del texto */
+    transform: scale(1.1); /* Solo escalar */
+    filter: brightness(1.2); /* Sutilmente más brillante */
+    box-shadow: 0 0 15px var(--naranja), 0 0 25px var(--azul); 
 }
 
 .navbar-toggler {
     border-color: var(--naranja) !important;
+    transition: all 0.3s ease;
+}
+.navbar-toggler:hover {
+    background-color: rgba(233, 123, 44, 0.15); /* Fondo sutil al hacer hover */
 }
 .navbar-toggler-icon {
+    /* El color del icono del toggler debe adaptarse al modo */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 123, 44, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
+body.light-mode .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2830, 41, 59, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
 
 .nav-link {
     color: var(--blanco) !important;
     position: relative;
-    font-weight: 600; /* Un poco más de peso para los enlaces */
-    padding: 8px 0; /* Ajustar padding para el efecto underline */
+    font-weight: 600;
+    padding: 12px 18px; /* Más padding para los enlaces */
+    transition: color 0.3s ease, transform 0.2s ease;
 }
+body.light-mode .nav-link {
+    color: var(--blanco) !important; /* Enlaces más oscuros en modo claro */
+}
+
+.nav-link:hover {
+    color: var(--naranja) !important; 
+    transform: translateY(-4px); /* Pequeño levante un poco más notorio */
+}
+
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Línea abajo del texto */
-    left: 50%; /* Centrar la línea */
+    bottom: 0;
+    left: 50%;
     transform: translateX(-50%);
     width: 0%;
-    height: 3px; /* Grosor de la línea */
-    background: var(--azul);
+    height: 3px; 
+    background-color: var(--azul); /* Usamos background-color */
     border-radius: 2px;
-    transition: width 0.3s ease-out;
+    transition: width 0.3s ease-out, background-color 0.3s ease; /* Añadimos background-color a la transición */
 }
-.nav-link:hover::after {
-    width: 80%; /* Ancho de la línea al hacer hover */
-}
-/* Activar el underline para el enlace activo (si Bootstrap lo añade) */
-.nav-link.active::after {
-    width: 80%;
+.nav-link:hover::after, .nav-link.active::after {
+    width: 70%; /* Ancho de la línea al hacer hover/activo */
+    background-color: var(--naranja); /* La línea se pone naranja al hover/activo */
 }
 
 /* Estilos para el Dropdown de CVs */
 .dropdown-menu {
-    background-color: var(--gris-oscuro) !important; /* Fondo del dropdown */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    background-color: var(--gris-oscuro) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más visible */
+    backdrop-filter: blur(10px); /* Más blur en el dropdown */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px; /* Bordes más redondeados */
+    padding: 10px 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
+body.light-mode .dropdown-menu {
+    background-color: var(--gris-oscuro) !important; /* Usa el gris-oscuro del light-mode */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
 .dropdown-item {
-    color: var(--blanco) !important; /* Texto de los items */
+    color: var(--blanco) !important; /* Color para el modo oscuro */
     transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 10px 20px;
+}
+body.light-mode .dropdown-item {
+    color: var(--blanco) !important; /* Color para el modo claro */
 }
 .dropdown-item:hover, .dropdown-item:focus {
-    background-color: var(--azul) !important; /* Fondo al pasar el ratón */
+    background-color: var(--azul) !important; 
     color: var(--blanco) !important;
 }
 
+/* Estilo para el icono opcional (ej. modo oscuro) */
+#theme-toggle {
+    font-size: 1.5rem; /* Icono un poco más grande */
+    cursor: pointer;
+    color: var(--gris-claro);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+#theme-toggle:hover {
+    color: var(--naranja);
+    transform: scale(1.15); /* Efecto de escala más pronunciado */
+}
+body.light-mode #theme-toggle {
+    color: var(--blanco); /* Icono oscuro en modo claro */
+}
 
 /*==========================================================
-  2. SECCIÓN HERO
+  2. SECCIÓN HERO (VERSIÓN FINAL: IMAGEN DE FONDO + PARTÍCULAS + RATÓN + SOLO BOTONES) - CORREGIDO
 ============================================================*/
-
 .hero {
-    background: url('../img/header.svg') center center/cover no-repeat fixed;
+    /* Usamos tus imágenes de fondo directamente */
+    background-image: url('../img/header-dark.svg'); 
+    background-position: center center;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: var(--oscuro); /* Color de respaldo si la imagen no carga, o si es un color base */
     min-height: 100vh;
     position: relative;
-    display: flex; /* Asegura el centrado vertical */
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 78px; /* Compensar la altura de la navbar */
+    padding-top: var(--navbar-height);
+    overflow: hidden; 
+    /* Transición para la imagen de fondo y el color de respaldo */
+    transition: background-image 0.8s ease-in-out, background-color 0.8s ease-in-out; 
 }
+/* Define explícitamente la imagen de fondo para el modo claro */
+body.light-mode .hero {
+    background-image: url('../img/header-light.svg');
+    background-color: var(--oscuro); /* En modo claro, --oscuro ya es el color claro definido en la paleta */
+
+}
+
+/* Contenedor de las partículas animadas */
+.animated-background-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    opacity: 0.8;
+    background: transparent; /* Asegura que este contenedor no tape el fondo */
+}
+/* Estilos para cada partícula individual (creadas con JS) */
+.animated-background-particles .particle {
+    position: absolute;
+    background-color: var(--particle-color-1); 
+    border-radius: 50%;
+    animation: floatParticle 15s ease-in-out infinite alternate,
+               pulseParticle 5s ease-in-out infinite;
+    pointer-events: none; /* Las partículas no deben interactuar con el ratón directamente */
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Diferenciación de colores para partículas */
+.animated-background-particles .particle:nth-child(even) {
+    background-color: var(--particle-color-2);
+}
+
+/* Estado activo de la partícula (por cercanía al ratón) */
+.animated-background-particles .particle.active {
+    background-color: var(--particle-color-active);
+    transform: scale(1.5);
+    box-shadow: 0 0 18px var(--particle-color-active), 0 0 8px rgba(255,255,255,0.7);
+    opacity: 1;
+}
+/* Definición de las animaciones Keyframes */
+@keyframes floatParticle {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(10vw, -10vh) scale(1.1); }
+    50% { transform: translate(0, 15vh) scale(0.9); }
+    75% { transform: translate(-15vw, -5vh) scale(1.2); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes pulseParticle {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Pseudo-elemento ::after para el brillo del ratón Y EL OVERLAY GENERAL */
 .hero::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6); /* Oscurecer la imagen de fondo */
-    z-index: 1;
+    inset: 0; /* Cubre todo el Hero */
+    /* Se usa la propiedad shorthand 'background' para definir ambos,
+       el brillo del ratón y el overlay oscuro por defecto.
+       El brillo del ratón va primero para que se vea encima del overlay. */
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mouse-glow-color) 0%, transparent 20%),
+                rgba(0, 0, 0, 0.4); /* Overlay oscuro por defecto para legibilidad */
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 1; /* Opacidad del conjunto de background */
+    z-index: 2; /* Por encima de las partículas, pero debajo del contenido */  
+    /* Transición para las propiedades del background */
+    transition: background-image 0.3s ease, opacity 0.3s ease;
+    pointer-events: none; /* Crucial: no debe bloquear la interacción con los botones */
 }
-.hero > div {
+
+/* Define el background para el pseudo-elemento ::after en modo claro */
+body.light-mode .hero::after {
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mouse-glow-color) 0%, transparent 20%),
+                rgba(255, 255, 255, 0.2); /* Overlay claro para el modo claro */
+}
+
+/* Contenedor de los botones (AHORA SIN FONDO NI BLUR) */
+.hero > div.container { 
     position: relative;
-    z-index: 2;
-    padding: 20px; /* Para que no se pegue en móviles */
+    z-index: 3; 
+    padding: 0; 
+    text-align: center;
+    max-width: 800px;
+    background-color: transparent; 
+    border-radius: 0; 
+    box-shadow: none; 
+    backdrop-filter: none; 
+    transition: none; 
 }
 
-/* Estilos para el texto de Typed.js */
-.typed-text {
-    min-height: 40px; /* Para evitar saltos de layout */
-    font-weight: 600;
+/* Eliminamos los estilos del h2 ya que no lo usamos */
+.hero h2 {
+    display: none; 
 }
 
-/* Sombra más bonita para el texto del Hero */
-.hero h1, .hero h2 {
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-}
+/* Estilos para los botones (revisa que estén definidos en tu CSS global) */
+/* Ejemplo, si los tienes definidos en otra parte, no es necesario incluirlos aquí */
 
-.btn-hero {
-    background: linear-gradient(90deg, var(--azul) 0%, var(--naranja) 100%);
-    color: var(--blanco);
-    border: none;
-    border-radius: 30px;
-    padding: 12px 30px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-.btn-hero:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 30px var(--naranja); /* Sombra más pronunciada al hacer hover */
-    filter: brightness(1.1);
-}
 
-.btn-hero-outline {
-    background: transparent;
-    color: var(--blanco);
-    border: 2px solid var(--azul);
-    border-radius: 30px;
-    padding: 12px 30px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-.btn-hero-outline:hover {
-    background: var(--azul);
-    border-color: var(--azul);
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px var(--azul);
+
+
+/* Media Queries (ahora solo para el tamaño de botones si es necesario) */
+@media (max-width: 768px) {
+    .btn-hero, .btn-hero-outline {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
 }
 
 /*==========================================================
@@ -238,6 +545,7 @@ h2 {
     display: inline-block;
     padding-bottom: 15px; /* Espacio para el underline */
     color: var(--blanco); /* Asegura que todos los H2 en secciones oscuras sean blancos */
+    transition: color 0.3s ease;
 }
 
 h2::after {
@@ -248,90 +556,144 @@ h2::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--naranja);
+    background-color: var(--naranja); /* Usamos background-color */
     border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+body.light-mode h2 {
+    color: var(--blanco) !important; /* Títulos oscuros en modo claro */
+}
+body.light-mode h2::after {
+    background-color: var(--azul); /* Línea azul en modo claro */
 }
 
 
 /*==========================================================
-  4. SECCIÓN SOBRE MÍ (AHORA FONDO OSCURO)
+  4. SECCIÓN SOBRE MÍ 
 ============================================================*/
 
 #sobre-mi {
     background-color: transparent; /* Permite que el background del body se vea */
     color: var(--blanco); /* Texto principal blanco por defecto del body */
+    transition: color 0.3s ease; /* Transicionamos el color del texto */
+}
+body.light-mode #sobre-mi {
+    color: var(--blanco); /* Texto principal oscuro en modo claro */
 }
 
+
 /* Párrafos del Perfil Profesional */
-#sobre-mi > p { /* Selector directo para el párrafo principal */
-    color: var(--gris-claro); /* Usa un gris claro para mayor legibilidad sobre el oscuro */
-    font-weight: 400; /* Volvemos al peso normal */
+#sobre-mi > p { 
+    color: var(--gris-claro); 
+    font-weight: 400; 
+    transition: color 0.3s ease;
 }
+body.light-mode #sobre-mi > p {
+    color: var(--gris-claro); /* Párrafos en gris oscuro en modo claro */
+}
+
 
 /* Estilo Glassmorphism para las tarjetas MVV */
 .card-mvv {
-    background: var(--bg-glass-card-dark); /* Fondo semi-transparente más oscuro */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    background-color: var(--bg-glass-card-dark); /* Usamos background-color */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 15px;
     backdrop-filter: blur(8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra más fuerte y extendida */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
     transition: all 0.4s ease;
 }
 .card-mvv:hover {
     transform: translateY(-10px); 
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 20px var(--naranja); /* Sombra intensa con halo naranja */
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 20px var(--naranja); 
     border-color: var(--naranja); 
 }
+body.light-mode .card-mvv {
+    background-color: var(--bg-glass-card-dark); /* Usa la variable del light-mode */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+body.light-mode .card-mvv:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), 0 0 15px var(--azul);
+    border-color: var(--azul);
+}
+
 .card-mvv h3 {
-    color: var(--blanco) !important; /* Títulos de M/V/V en blanco */
+    color: var(--blanco) !important; 
     border-bottom: 2px solid var(--azul); 
     padding-bottom: 10px;
     margin-bottom: 15px;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
-.card-mvv p {
-    color: var(--gris-claro); /* Párrafos dentro de las MVV en gris claro */
-    font-weight: 400;
+body.light-mode .card-mvv h3 {
+    color: var(--blanco) !important; /* Títulos de tarjeta oscuros */
+    border-color: var(--naranja);
 }
 
+.card-mvv p {
+    color: var(--gris-claro); 
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+body.light-mode .card-mvv p {
+    color: var(--gris-claro); /* Párrafos de tarjeta oscuros */
+}
 
 /*==========================================================
-  5. SECCIÓN HABILIDADES (FONDO OSCURO)
+  5. SECCIÓN HABILIDADES 
 ============================================================*/
 #habilidades {
     background-color: var(--oscuro);
     color: var(--blanco);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .skill-card {
-    background: var(--gris-oscuro); /* Fondo sólido para las tarjetas de habilidad */
+    background: var(--gris-oscuro); 
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); 
     transition: all 0.3s ease;
     border: 1px solid var(--gris-oscuro);
 }
 .skill-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px var(--azul), 0 0 15px rgba(72, 132, 180, 0.5); /* Sombra azul con halo */
+    box-shadow: 0 12px 30px var(--azul), 0 0 15px rgba(72, 132, 180, 0.5); 
     border-color: var(--azul);
 }
+body.light-mode .skill-card {
+    background: var(--gris-oscuro);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0,0,0,0.1);
+}
+body.light-mode .skill-card:hover {
+    box-shadow: 0 10px 25px var(--naranja), 0 0 12px rgba(233, 123, 44, 0.4);
+    border-color: var(--naranja);
+}
+
 .skill-card h3 {
     color: var(--blanco) !important;
     margin-top: 15px;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
 }
+body.light-mode .skill-card h3 {
+    color: var(--blanco) !important;
+}
+
 .skill-card p {
     color: var(--gris-claro);
     font-size: 0.95rem;
+    transition: color 0.3s ease;
 }
 
 
 /*==========================================================
-  6. SECCIÓN PROYECTOS (FONDO OSCURO)
+  6. SECCIÓN PROYECTOS 
 ============================================================*/
 
 #proyectos {
-    background-color: var(--oscuro); /* Asegura el fondo oscuro */
-    color: var(--blanco); /* Asegura el texto blanco */
+    background-color: var(--oscuro); 
+    color: var(--blanco); 
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .project-card {
@@ -341,28 +703,37 @@ h2::after {
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 30px var(--naranja), 0 0 10px rgba(0, 0, 0, 0.6); 
     border-color: var(--naranja);
 }
+body.light-mode .project-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+body.light-mode .project-card:hover {
+    box-shadow: 0 12px 25px var(--azul), 0 0 8px rgba(0, 0, 0, 0.4);
+    border-color: var(--azul);
+}
+
 .project-img {
     width: 100%;
-    height: 200px; /* Altura fija para las imágenes de proyecto */
-    object-fit: cover; /* Ajusta la imagen para cubrir el espacio */
+    height: 200px; 
+    object-fit: cover; 
     transition: transform 0.4s ease, filter 0.4s ease;
 }
 .project-card:hover .project-img {
     transform: scale(1.1);
-    filter: brightness(0.7); /* Oscurece la imagen para que el overlay destaque más */
+    filter: brightness(0.7); 
 }
 
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para el overlay */
+    background: rgba(0, 0, 0, 0.7); 
     color: var(--blanco);
     display: flex;
     flex-direction: column;
@@ -370,16 +741,21 @@ h2::after {
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 12px; /* Asegura el border-radius del overlay */
+    border-radius: 12px; 
 }
 .project-card:hover .overlay {
     opacity: 1;
 }
+body.light-mode .overlay {
+    background: rgba(255, 255, 255, 0.7); /* Overlay más claro en modo claro */
+    color: var(--blanco); /* Texto del overlay oscuro en modo claro */
+}
+
 
 .overlay h4 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
-    color: var(--naranja); /* Título del proyecto en naranja */
+    color: var(--naranja); 
 }
 .overlay p {
     font-size: 1rem;
@@ -392,8 +768,8 @@ h2::after {
     border-color: var(--blanco);
     color: var(--blanco);
     background-color: transparent;
-    padding: 8px 20px; /* Ajustar padding */
-    border-radius: 20px; /* Más redondeado */
+    padding: 8px 20px; 
+    border-radius: 20px; 
     font-weight: 600;
     transition: all 0.3s ease;
 }
@@ -404,35 +780,122 @@ h2::after {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 5px 15px rgba(233, 123, 44, 0.5);
 }
-
+body.light-mode .project-card .btn-outline-light {
+    border-color: var(--blanco);
+    color: var(--blanco);
+}
+body.light-mode .project-card .btn-outline-light:hover {
+    background-color: var(--azul);
+    border-color: var(--azul);
+    box-shadow: 0 5px 15px rgba(72, 132, 180, 0.5);
+}
 
 /*==========================================================
-  7. SECCIÓN LLAMADA A LA ACCIÓN MEJORADA (Call to Action)
+  7. SECCIÓN LLAMADA A LA ACCIÓN MEJORADA (Call to Action) - ESTRATEGIA ALTERNATIVA PARA TÍTULO
 ============================================================*/
 .call-to-action {
-    background: linear-gradient(135deg, var(--gris-oscuro) 0%, var(--oscuro) 100%);
+    background-image: linear-gradient(135deg, var(--gris-oscuro) 0%, var(--oscuro) 100%);
     position: relative;
-    overflow: hidden; /* Para contener los elementos de fondo */
-    padding: 80px 0; /* Más espacio vertical */
+    overflow: hidden; 
+    padding: 80px 0; 
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-image 0.5s ease, border-color 0.5s ease; 
+    color: var(--blanco); 
 }
 
-.call-to-action h2 {
-    font-size: 3.2rem; /* Título más grande */
+body.light-mode .call-to-action {
+    background-image: linear-gradient(135deg, var(--gris-claro) 0%, var(--oscuro) 100%); 
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--blanco); 
+}
+
+/* ESTILOS PARA EL TÍTULO ANIMADO - ¡NUEVA ESTRATEGIA! */
+.cta-title {
+    font-size: 3.2rem; 
     margin-bottom: 1.5rem;
-    color: var(--naranja) !important; /* Asegura el color naranja */
+    font-weight: 700; 
+    position: relative; /* Esencial para posicionar el pseudo-elemento */
+    display: inline-block; /* Para que el pseudo-elemento se posicione correctamente */
+    padding: 0 5px; 
+    text-align: center; 
+    line-height: 1.2; 
+    color: var(--blanco); /* El texto ahora tiene un color sólido inicial (BLANCO) */
+    z-index: 4; 
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Sombra para que destaque sobre el fondo */
+    transition: color 0.5s ease, text-shadow 0.5s ease; /* Transición para el tema */
 }
-.call-to-action h2::after {
-    background: var(--azul); /* Cambiamos el color de la línea bajo el h2 */
+
+/* Adaptación del título para el modo claro */
+body.light-mode .cta-title {
+    color: var(--oscuro); /* El texto ahora tiene un color sólido oscuro en modo claro */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
+
+/* PSEUDO-ELEMENTO PARA EL EFECTO DEGRADADO ANIMADO */
+.cta-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* Empieza con ancho cero */
+    height: 100%;
+    /* Degradado que se revelará */
+    background: linear-gradient(90deg, var(--azul) 0%, var(--naranja) 50%, var(--blanco) 100%); 
+    z-index: -1; /* Detrás del texto pero dentro del cta-title */
+    animation: revealGradient 3s forwards ease-out 0.5s; /* Nueva animación */
+    mix-blend-mode: screen; /* ¡La clave para el efecto! */
+    transition: background 0.5s ease; /* Transición del degradado para el cambio de tema */
+}
+
+/* Adaptación del pseudo-elemento para el modo claro */
+body.light-mode .cta-title::before {
+    background: linear-gradient(90deg, var(--naranja) 0%, var(--azul) 50%, var(--oscuro) 100%); 
+    animation: revealGradient 3s forwards ease-out 0.5s; /* Reaplicar animación */
+}
+
+/* Para la línea inferior del H2 */
+.cta-title::after {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 4px;
+    bottom: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--azul); 
+    border-radius: 2px;
+    animation: drawLine 2s forwards ease-out 2.5s; 
+    transition: background-color 0.5s ease; 
+}
+
+body.light-mode .cta-title::after {
+    background-color: var(--naranja); 
+}
+
+/* NUEVA ANIMACIÓN PARA REVELAR EL GRADIENTE */
+@keyframes revealGradient {
+    0% { width: 0; }
+    100% { width: 100%; } /* Se expande de izquierda a derecha */
+}
+
+@keyframes drawLine {
+    0% { width: 0; }
+    100% { width: 80px; } 
+}
+
 
 .call-to-action p {
-    color: var(--gris-claro);
+    color: var(--gris-claro); 
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.3rem; 
+    margin-bottom: 3rem; 
+    transition: color 0.5s ease; 
 }
+
 
 /* Fondo con estrellas y círculos pulsantes */
 .background-elements {
@@ -440,7 +903,7 @@ h2::after {
     inset: 0;
     overflow: hidden;
     z-index: 0;
-    pointer-events: none; /* No interactúan con el ratón */
+    pointer-events: none; 
 }
 
 .star {
@@ -449,6 +912,7 @@ h2::after {
     border-radius: 50%;
     opacity: 0;
     animation: twinkle 4s infinite ease-in-out;
+    transition: background-color 0.5s ease; 
 }
 .star-1 { width: 4px; height: 4px; top: 10%; left: 20%; animation-delay: 0s; }
 .star-2 { width: 3px; height: 3px; top: 30%; right: 15%; animation-delay: 1.5s; }
@@ -462,12 +926,30 @@ h2::after {
 .pulse-circle {
     position: absolute;
     border-radius: 50%;
-    background: var(--pulse-color);
+    background-color: var(--pulse-color); 
     opacity: 0;
     animation: pulse 6s infinite ease-out;
+    transition: background-color 0.5s ease; 
 }
 .pulse-circle-1 { width: 150px; height: 150px; top: 5%; left: 5%; animation-delay: 0s; }
 .pulse-circle-2 { width: 200px; height: 200px; bottom: 10%; right: 10%; animation-delay: 3s; }
+
+.pulse-circle-3 { 
+    width: 300px; 
+    height: 300px;
+    top: 50%;
+    right: 0%; 
+    transform: translate(50%, -50%); 
+    background-color: var(--azul); 
+    opacity: 0.1; 
+    animation: none; 
+    border-radius: 50%;
+    transition: background-color 0.5s ease; 
+}
+body.light-mode .pulse-circle-3 {
+    background-color: var(--naranja); 
+    opacity: 0.1;
+}
 
 @keyframes pulse {
     0% { transform: scale(0.5); opacity: 0; }
@@ -475,11 +957,38 @@ h2::after {
     100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* Ajuste para el Lottie player */
-.call-to-action lottie-player {
-    animation-duration: 2s; /* Acelera un poco la entrada de Lottie */
+/* MEDIA QUERIES PARA RESPONSIVIDAD */
+@media (max-width: 992px) {
+    .cta-title {
+        font-size: 2.8rem;
+    }
+    .call-to-action p {
+        font-size: 1.2rem;
+    }
 }
 
+@media (max-width: 768px) {
+    .call-to-action {
+        padding: 60px 0;
+    }
+    .cta-title {
+        font-size: 2.2rem;
+    }
+    .call-to-action p {
+        font-size: 1rem;
+    }
+    .pulse-circle-3 { 
+        width: 150px;
+        height: 150px;
+        transform: translate(50%, -50%);
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-title {
+        font-size: 1.8rem;
+    }
+}
 
 /*==========================================================
   8. SECCIÓN CONTACTO
@@ -488,13 +997,29 @@ h2::after {
 #contacto {
     background-color: transparent; /* Permite que el fondo del body se vea */
     color: var(--blanco); /* Asegura que el texto sea blanco */
+    transition: color 0.3s ease; /* Transición para el tema */
+}
+/* Adaptación de la sección Contacto para el modo claro */
+body.light-mode #contacto {
+    color: var(--blanco); /* Texto oscuro en modo claro */
 }
 
 #contacto p {
     color: var(--gris-claro); /* Asegura el gris claro para los párrafos de contacto */
+    transition: color 0.3s ease; /* Transición para el tema */
 }
+/* Adaptación de los párrafos de Contacto para el modo claro */
+body.light-mode #contacto p {
+    color: var(--gris-claro); /* Párrafos en gris oscuro en modo claro */
+}
+
 #contacto a {
     font-weight: 600; /* Negrita para los enlaces de contacto */
+    transition: color 0.3s ease; /* Transición para el tema */
+}
+/* Adaptación de los enlaces de Contacto para el modo claro */
+body.light-mode #contacto a {
+    color: var(--blanco); /* Enlaces oscuros en modo claro */
 }
 
 
@@ -503,16 +1028,30 @@ h2::after {
 ============================================================*/
 
 .footer-glass {
-    background: var(--bg-transparente-oscuro);
+    background-color: var(--bg-transparente-oscuro); /* Usamos background-color para el fondo transparente */
     backdrop-filter: blur(8px);
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3); /* Sombra superior para el footer */
     color: var(--blanco);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Una única línea de transition, bien definida, incluyendo backdrop-filter */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease; 
+}
+/* Adaptación del Footer para el modo claro */
+body.light-mode .footer-glass {
+    background-color: var(--bg-transparente-oscuro); /* Esta variable ya cambiará al color claro cuando el body tenga la clase light-mode */
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Sombra más suave en modo claro */
+    color: var(--blanco); /* Texto principal del footer en modo claro */
+    border-top: 1px solid rgba(0, 0, 0, 0.08); /* Borde más sutil en modo claro */
 }
 
 .footer-glass p {
     margin-bottom: 0;
     color: var(--gris-claro);
+    transition: color 0.3s ease; /* Transición para el tema */
+}
+/* Adaptación de los párrafos del Footer para el modo claro */
+body.light-mode .footer-glass p {
+    color: var(--gris-claro); /* Párrafos oscuros en modo claro */
 }
 
 
@@ -521,26 +1060,48 @@ h2::after {
 ============================================================*/
 
 @media (max-width: 991.98px) {
+    .blur-nav {
+        height: auto; /* Altura automática en móvil */
+        padding-top: 20px; /* Un poco más de padding superior en móvil */
+        padding-bottom: 20px; /* Un poco más de padding inferior en móvil */
+    }
     .navbar-collapse {
-        background: var(--bg-transparente-oscuro);
-        backdrop-filter: blur(10px);
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 10px;
+        background-color: var(--bg-transparente-oscuro); /* Usamos background-color */
+        backdrop-filter: blur(12px); /* Más blur en el menú móvil */
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 15px;
     }
     .navbar-nav {
         align-items: center;
     }
     .nav-link {
-        padding: 10px 0;
+        padding: 12px 0;
     }
     .nav-link::after {
         left: 50%;
         transform: translateX(-50%);
-        width: 60%;
+        width: 70%;
     }
     .nav-link:hover::after, .nav-link.active::after {
-        width: 70%;
+        width: 80%;
+    }
+    .navbar-logo {
+        width: 70px; /* Ajuste del tamaño del logo en móvil para que no sea excesivo */
+    }
+    /* Si tienes el botón de CV dropdown, asegúrate de que se vea bien */
+    .dropdown-menu {
+        position: static !important; 
+        transform: none !important;
+        width: 100%;
+        text-align: center;
+    }
+    .nav-item.dropdown {
+        width: 100%;
+        text-align: center;
+    }
+    #theme-toggle {
+        font-size: 1.4rem; /* Ajuste para el icono en móvil */
     }
 }
 
@@ -554,7 +1115,7 @@ h2::after {
     .hero h2.typed-text {
         font-size: 1.5rem;
     }
-    .call-to-action h2 {
+    .cta-title { 
         font-size: 2.5rem;
     }
     .call-to-action p {
@@ -563,10 +1124,6 @@ h2::after {
     .btn-hero, .btn-hero-outline {
         padding: 10px 20px;
         font-size: 1rem;
-    }
-    .lottie-player {
-        width: 120px !important;
-        height: 120px !important;
     }
 }
 
@@ -580,7 +1137,7 @@ h2::after {
     .hero h2.typed-text {
         font-size: 1.2rem;
     }
-    .call-to-action h2 {
+    .cta-title { 
         font-size: 2rem;
     }
     .call-to-action p {

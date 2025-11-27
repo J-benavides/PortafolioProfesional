@@ -11,6 +11,8 @@
 
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -20,56 +22,81 @@
 </head>
 <body>
 
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-top blur-nav py-3">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center text-naranja" href="#main-content">
-                    <img src="img/logo.svg" alt="Logo JBG" class="navbar-logo me-2">
-                    <span class="fw-bold fs-4">J. Benavides</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav gap-3">
-                        <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top blur-nav py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="img/logo-dark.svg" alt="Logo JBG" class="navbar-logo" id="main-logo"> 
+            </a>
 
-    <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white" id="main-content">
-        <div>
-            <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">¡Hola! Soy Joshua Benavides</h1>
-            <h2 class="typed-text fs-3 text-azul mb-4 animate__animated animate__fadeInUp animate__delay-1s"></h2>
-            <div class="mt-5 animate__animated animate__zoomIn animate__delay-2s d-flex justify-content-center flex-wrap gap-3">
-                
-                <a href="CVA/Joshua Francisco Benavides Guzmán CVA.pdf" download="CV_Joshua_Benavides.pdf" class="btn btn-lg btn-hero">
-                    Descargar CV <i class="bi bi-file-earmark-person-fill ms-2"></i>
-                </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="dropdown">
-                    <button class="btn btn-lg btn-hero-outline dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Más CVs <i class="bi bi-caret-down-fill ms-2"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__fadeIn animate__faster" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="CVA/CV DISEÑO WEB.pdf" download="CV_Diseno_Web_Joshua.pdf">
-                            <i class="bi bi-file-earmark-image-fill me-2"></i> CV Diseño Web
-                        </a></li>
-                        <li><a class="dropdown-item" href="CVA/Joshua Francisco Benavides Guzmán CVA INGLES.pdf" download="CV_Joshua_Benavides_EN.pdf">
-                            <i class="bi bi-file-earmark-text-fill me-2"></i> CV en Inglés
-                        </a></li>
-                    </ul>
-                </div>
-
-                <a href="#proyectos" class="btn btn-lg btn-hero-outline">Ver Proyectos <i class="bi bi-arrow-right-circle ms-2"></i></a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre-mi">Sobre mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#habilidades">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proyectos">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCV" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            CV
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownCV">
+                            <li><a class="dropdown-item" href="CVA/Joshua Francisco Benavides Guzmán CVA.pdf" target="_blank">Ver CV (Español)</a></li>
+                            <li><a class="dropdown-item" href="CVA/Joshua Francisco Benavides Guzmán CVA INGLES.pdf" target="_blank">Ver CV (Inglés)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-flex align-items-center ms-lg-3">
+                        <a class="nav-link" href="#" id="theme-toggle" aria-label="Cambiar Tema"> 
+                            <i class="bi bi-moon-fill"></i> </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
+    </nav>
+</header>
+
+<section id="hero" class="hero">
+    <div class="animated-background-particles">
+        </div>
+
+    <div class="container text-center">
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="CVA/Joshua Francisco Benavides Guzmán CVA.pdf" download="Joshua_Benavides_CV_ES.pdf" class="btn btn-hero d-flex align-items-center justify-content-center">
+                Descargar CV <i class="fas fa-download ms-2"></i>
+            </a>
+            
+            <div class="dropdown">
+                <button class="btn btn-hero-outline dropdown-toggle d-flex align-items-center" type="button" id="dropdownCvs" data-bs-toggle="dropdown" aria-expanded="false">
+                    Más CVs
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownCvs">
+                    <li><a class="dropdown-item" href="CVA/Joshua Francisco Benavides Guzmán CVA INGLES.pdf" target="_blank">Ver CV (Inglés)</a></li>
+                    <li><a class="dropdown-item" href="CVA/CV DISEÑO WEB.pdf" target="_blank">Ver CV Diseño Web</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="#proyectos" class="btn btn-hero-outline mt-4 d-inline-flex align-items-center justify-content-center">
+            Ver Proyectos <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</section>
+
 
 <section id="sobre-mi" class="container py-5" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center text-azul mb-5">Sobre mí</h2>
@@ -191,19 +218,13 @@
 
 <section class="call-to-action py-5 text-white text-center position-relative overflow-hidden" data-aos="zoom-in" data-aos-duration="1200">
     <div class="container position-relative z-1">
-        <h2 class="text-naranja mb-4 animate__animated animate__fadeInUp">¿Listo para transformar tus ideas en realidad?</h2>
+        <h2 class="cta-title mb-4">
+            ¿Listo para transformar tus ideas en realidad? 
+        </h2>
+        
         <p class="fs-4 mb-5 animate__animated animate__fadeInUp animate__delay-1s">
             Si buscas un desarrollador que combine creatividad, precisión y escalabilidad, ¡has llegado al lugar correcto!
         </p>
-        
-        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_pztzjb8f.json" 
-                       background="transparent" 
-                       speed="1" 
-                       style="width: 180px; height: 180px; margin: 0 auto 40px auto;" 
-                       loop 
-                       autoplay
-                       class="animate__animated animate__zoomIn animate__delay-2s">
-        </lottie-player>
 
         <a href="#contacto" class="btn btn-lg btn-hero animate__animated animate__fadeInUp animate__delay-3s">
             ¡Hablemos de tu próximo gran proyecto! <i class="bi bi-chat-dots ms-2"></i>
@@ -215,9 +236,9 @@
         <div class="star star-3"></div>
         <div class="pulse-circle pulse-circle-1"></div>
         <div class="pulse-circle pulse-circle-2"></div>
+        <div class="pulse-circle pulse-circle-3"></div>
     </div>
 </section>
-
 
     <section id="contacto" class="container py-5 text-center text-dark-mode" data-aos="zoom-in" data-aos-duration="1000">
         <h2 class="text-azul mb-4">¡Conectemos!</h2>
