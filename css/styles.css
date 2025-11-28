@@ -294,7 +294,7 @@ body.light-mode .blur-nav.scrolled {
 
 /* Estilo para el logo de la navbar (NUEVAMENTE REVISADO Y MÁS GRANDE) */
 .navbar-logo {
-    width: 110px; /* ¡Aún más grande! Ajustado para 120px de altura de nav */
+    width: 140px; /* ¡Aún más grande! Ajustado para 120px de altura de nav */
     height: auto;
     object-fit: contain;
     transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
@@ -400,51 +400,55 @@ body.light-mode #theme-toggle {
 }
 
 /*==========================================================
-  2. SECCIÓN HERO (VERSIÓN FINAL: IMAGEN DE FONDO + PARTÍCULAS + RATÓN + SOLO BOTONES) - CORREGIDO
+  2. SECCIÓN HERO (VERSIÓN FINAL Y 100% RESPONSIVE)
 ============================================================*/
+
 .hero {
-    /* Usamos tus imágenes de fondo directamente */
-    background-image: url('../img/header-dark.svg'); 
+    /* Fondo responsivo y de tema */
+    background-image: url('../img/header-dark.svg'); /* Imagen de fondo para modo oscuro */
     background-position: center center;
     background-size: cover; 
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color: var(--oscuro); /* Color de respaldo si la imagen no carga, o si es un color base */
-    min-height: 100vh;
+    background-attachment: fixed; /* Por defecto, fijo para efecto paralaje en desktop */
+    background-color: var(--oscuro); /* Color de respaldo */
+
+    min-height: 100vh; /* Ocupa al menos toda la altura de la ventana */
     position: relative;
     display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen si es necesario */
     align-items: center;
     justify-content: center;
-    padding-top: var(--navbar-height);
-    overflow: hidden; 
-    /* Transición para la imagen de fondo y el color de respaldo */
+    padding-top: var(--navbar-height, 0px); /* Usa 0px si --navbar-height no está definida */
+    padding-bottom: 30px; /* Padding inferior para el contenido */
+    overflow: hidden; /* Para contener las partículas y efectos */
     transition: background-image 0.8s ease-in-out, background-color 0.8s ease-in-out; 
 }
-/* Define explícitamente la imagen de fondo para el modo claro */
-body.light-mode .hero {
-    background-image: url('../img/header-light.svg');
-    background-color: var(--oscuro); /* En modo claro, --oscuro ya es el color claro definido en la paleta */
 
+/* Adaptación del fondo en modo claro */
+body.light-mode .hero {
+    background-image: url('../img/header-light.svg'); /* Imagen de fondo para modo claro */
+    background-color: var(--oscuro); /* --oscuro en light-mode es el fondo claro */
 }
 
 /* Contenedor de las partículas animadas */
 .animated-background-particles {
     position: absolute;
-    inset: 0;
+    inset: 0; /* Cubre todo el Hero */
     width: 100%;
     height: 100%;
-    z-index: 1; 
+    z-index: 1; /* Detrás del contenido, delante del fondo */
     opacity: 0.8;
-    background: transparent; /* Asegura que este contenedor no tape el fondo */
+    background: transparent;
 }
-/* Estilos para cada partícula individual (creadas con JS) */
+
+/* Estilos para cada partícula individual (creadas dinámicamente con JS) */
 .animated-background-particles .particle {
     position: absolute;
     background-color: var(--particle-color-1); 
     border-radius: 50%;
     animation: floatParticle 15s ease-in-out infinite alternate,
                pulseParticle 5s ease-in-out infinite;
-    pointer-events: none; /* Las partículas no deben interactuar con el ratón directamente */
+    pointer-events: none; /* No bloquea interacción con el contenido */
     transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -460,7 +464,8 @@ body.light-mode .hero {
     box-shadow: 0 0 18px var(--particle-color-active), 0 0 8px rgba(255,255,255,0.7);
     opacity: 1;
 }
-/* Definición de las animaciones Keyframes */
+
+/* Definición de las animaciones Keyframes para las partículas */
 @keyframes floatParticle {
     0% { transform: translate(0, 0) scale(1); }
     25% { transform: translate(10vw, -10vh) scale(1.1); }
@@ -475,39 +480,40 @@ body.light-mode .hero {
     100% { opacity: 0.6; }
 }
 
-/* Pseudo-elemento ::after para el brillo del ratón Y EL OVERLAY GENERAL */
+/* Pseudo-elemento ::after para el brillo del ratón y el overlay general */
 .hero::after {
     content: "";
     position: absolute;
     inset: 0; /* Cubre todo el Hero */
-    /* Se usa la propiedad shorthand 'background' para definir ambos,
-       el brillo del ratón y el overlay oscuro por defecto.
-       El brillo del ratón va primero para que se vea encima del overlay. */
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mouse-glow-color) 0%, transparent 20%),
-                rgba(0, 0, 0, 0.4); /* Overlay oscuro por defecto para legibilidad */
+    /* Degradado radial para el brillo del ratón, y un overlay oscuro/claro */
+    background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mouse-glow-color) 0%, transparent 20%),
+                      rgba(0, 0, 0, 0.4); /* Overlay oscuro */
+    
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    opacity: 1; /* Opacidad del conjunto de background */
-    z-index: 2; /* Por encima de las partículas, pero debajo del contenido */  
-    /* Transición para las propiedades del background */
-    transition: background-image 0.3s ease, opacity 0.3s ease;
-    pointer-events: none; /* Crucial: no debe bloquear la interacción con los botones */
+
+    opacity: 1; 
+    z-index: 2; /* Encima de las partículas, debajo del contenido principal */
+    transition: background-image 0.3s ease, opacity 0.3s ease; 
+    pointer-events: none; /* Crucial para permitir interacción con los elementos debajo */
 }
 
-/* Define el background para el pseudo-elemento ::after en modo claro */
+/* Adaptación del overlay en modo claro */
 body.light-mode .hero::after {
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mouse-glow-color) 0%, transparent 20%),
-                rgba(255, 255, 255, 0.2); /* Overlay claro para el modo claro */
+    background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mouse-glow-color) 0%, transparent 20%),
+                      rgba(255, 255, 255, 0.2); /* Overlay claro */
 }
 
-/* Contenedor de los botones (AHORA SIN FONDO NI BLUR) */
+/* Contenedor del contenido principal del Hero (H2, P, Botones) */
 .hero > div.container { 
     position: relative;
-    z-index: 3; 
-    padding: 0; 
+    z-index: 3; /* Asegura que el contenido esté al frente */
+    padding: 0 15px; /* Padding horizontal para el contenido en móviles */
     text-align: center;
-    max-width: 800px;
+    max-width: 900px; /* Limita el ancho del contenido principal */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    /* Resetea estilos si Bootstrap añade algo no deseado */
     background-color: transparent; 
     border-radius: 0; 
     box-shadow: none; 
@@ -515,22 +521,109 @@ body.light-mode .hero::after {
     transition: none; 
 }
 
-/* Eliminamos los estilos del h2 ya que no lo usamos */
-.hero h2 {
-    display: none; 
+/* Título principal "Developer" */
+.hero-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 5rem; /* Ajusta este tamaño según tu diseño */
+    font-weight: 800;
+    color: var(--blanco); /* Color base del texto */
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 0; 
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    transition: color 0.3s ease;
+    z-index: 3; 
+    line-height: 1.1; /* Asegura que el texto no se superponga */
+}
+body.light-mode .hero-title {
+    color: var(--oscuro); /* Color del texto en modo claro */
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
 }
 
-/* Estilos para los botones (revisa que estén definidos en tu CSS global) */
-/* Ejemplo, si los tienes definidos en otra parte, no es necesario incluirlos aquí */
+/* Subtítulos (nombre, frase creativa) */
+.hero-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--gris-claro);
+    margin-top: 10px;
+    margin-bottom: 10px; /* Espaciado entre subtítulos */
+    transition: color 0.3s ease;
+    z-index: 3;
+    line-height: 1.2;
+}
+body.light-mode .hero-subtitle {
+    color: var(--gris-claro); /* Gris oscuro en modo claro */
+}
 
+/* Media Queries para responsividad completa del HERO */
 
+/* Para pantallas medianas (tablets y laptops pequeñas) */
+@media (max-width: 992px) {
+    .hero {
+        padding-top: calc(var(--navbar-height, 0px) + 20px); 
+    }
+    .hero-title {
+        font-size: 4rem; 
+        letter-spacing: 3px;
+    }
+    .hero-subtitle {
+        font-size: 1.3rem; 
+        margin-bottom: 8px;
+    }
+}
 
-
-/* Media Queries (ahora solo para el tamaño de botones si es necesario) */
+/* Para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
-    .btn-hero, .btn-hero-outline {
-        padding: 10px 25px;
-        font-size: 1rem;
+    .hero {
+        background-attachment: scroll; /* DESACTIVA el efecto fixed para móviles */
+        min-height: 85vh; /* Puede ser más corto en móviles */
+        padding-top: calc(var(--navbar-height, 0px) + 15px);
+        padding-bottom: 20px;
+    }
+    .hero-title {
+        font-size: 3rem; 
+        letter-spacing: 2px;
+        line-height: 1.1;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem; 
+        margin-top: 8px;
+        margin-bottom: 5px;
+    }
+    /* Asegura que el grupo de botones se vea bien */
+    .hero .d-flex.flex-wrap.justify-content-center.gap-3 {
+        flex-direction: column; /* Apila los botones en columnas en móviles */
+        align-items: center; /* Centra los botones apilados */
+        gap: 15px !important; /* Más espacio entre botones apilados */
+    }
+    .hero .btn-hero,
+    .hero .btn-hero-outline {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 280px; /* Limita el ancho para que no sean excesivamente anchos */
+    }
+    .hero .dropdown {
+        width: 100%; /* El dropdown también ocupa todo el ancho */
+        max-width: 280px;
+    }
+    .hero .btn-hero-outline.mt-4 {
+        margin-top: 15px !important; /* Ajusta el margen superior para el botón de Proyectos */
+    }
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .hero .btn-hero,
+    .hero .btn-hero-outline,
+    .hero .dropdown {
+        max-width: 220px; /* Reducir aún más el ancho de los botones en pantallas muy pequeñas */
     }
 }
 
